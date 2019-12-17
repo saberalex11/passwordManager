@@ -6,7 +6,7 @@
     <!-- 设置密码 -->
     <string name="set_password">请设置密码</string>
     <string name="sure">确认</string>
-    <string name="first">请设置root密码</string>
+    <string name="first">请设置登录密码</string>
     <!-- 主页面 -->
     <string name="query">查询</string>
     <string name="add">新增</string>

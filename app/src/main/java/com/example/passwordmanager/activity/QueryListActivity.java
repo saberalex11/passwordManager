@@ -29,11 +29,13 @@ public class QueryListActivity extends AppCompatActivity {
     public void query(View view) {
         String condition = ((TextView) this.findViewById(R.id.conditionText)).getText().toString();
         if ("".equals(condition)) {
-            ToastUtils.show(this, this.getString(R.string.condition_empty));
-            return;
+            List<PasswordBean> all = LitePal.findAll(PasswordBean.class);
+            this.flushList(all);
+        }else{
+            List<PasswordBean> all = LitePal.where("name like ?", "%" + condition + "%").find(PasswordBean.class);
+            this.flushList(all);
         }
-        List<PasswordBean> all = LitePal.where("name like ?", "%" + condition + "%").find(PasswordBean.class);
-        this.flushList(all);
+
     }
 
     private void flushList(List<PasswordBean> data) {
