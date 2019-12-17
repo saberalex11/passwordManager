@@ -20,6 +20,16 @@ public class SetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_password);
 
+        this.checkJump();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        this.checkJump();
+    }
+
+    private void checkJump(){
         int count = LitePal.count(RootPassword.class);
         if(count != 0){
             Intent intent = new Intent(this, MainFrameActivity.class);
