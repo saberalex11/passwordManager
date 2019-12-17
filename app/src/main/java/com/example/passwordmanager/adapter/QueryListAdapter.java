@@ -1,6 +1,7 @@
 package com.example.passwordmanager.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 
 import com.example.passwordmanager.R;
@@ -22,6 +24,7 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
     // 子项布局的id
     private int resourceId;
 
+    private PasswordBean selectedPasswordBean;
 
     public QueryListAdapter(@NonNull Context context, int resource, @NonNull List<PasswordBean> objects) {
         super(context, resource, objects);
@@ -45,14 +48,29 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
 
     @Override
     public void onClick(View v) {
+        selectedPasswordBean = null;
         if (v.getId() == R.id.deleteButton) {
             int tag = (int) v.getTag();
-            PasswordBean passwordBean = getItem(tag);//获取当前项的实例
-            if (passwordBean != null) {
-                this.remove(passwordBean);
-                passwordBean.delete();
-                ToastUtils.show(getContext(), getContext().getString(R.string.delete_success));
+            selectedPasswordBean = getItem(tag);//获取当前项的实例
+            if (selectedPasswordBean != null) {
+                this.confirm();
             }
         }
+    }
+
+    private void confirm() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(getContext().getString(R.string.delete_confirm));
+        builder.setMessage(getContext().getString(R.string.delete_confirm_message));
+
+        builder.setNegativeButton(getContext().getText(R.string.no), (DialogInterface di, int pos) -> {
+        });
+
+        builder.setPositiveButton(getContext().getText(R.string.yes), (DialogInterface di, int pos) -> {
+            this.remove(selectedPasswordBean);
+            selectedPasswordBean.delete();
+            ToastUtils.show(getContext(), getContext().getString(R.string.delete_success));
+        });
+        builder.create().show();
     }
 }

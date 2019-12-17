@@ -28,7 +28,7 @@
     <string name="login_success">登录成功</string>
     <string name="delete_success">删除成功</string>
     <string name="set_password_success">设置密码成功</string>
-    <string name="reset_password">密码已经重置</string>
+    <string name="reset_password">登录密码已经重置</string>
     <string name="name_empty">名称不可为空</string>
     <string name="account_empty">账号不可为空</string>
     <string name="password_empty">密码不可为空</string>
@@ -38,6 +38,10 @@
     <string name="password_length_tips">密码长度为6至20位</string>
     <string name="please_input_name">请输入名称</string>
     <string name="condition_empty">查询条件为空</string>
+    <string name="delete_confirm">删除确认</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="delete_confirm_message">是否确认删除</string>
 
     <!-- 密码 -->
     <string-array name="number">
