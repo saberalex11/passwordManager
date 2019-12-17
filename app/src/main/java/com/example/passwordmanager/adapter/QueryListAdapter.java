@@ -48,7 +48,6 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
 
     @Override
     public void onClick(View v) {
-        selectedPasswordBean = null;
         if (v.getId() == R.id.deleteButton) {
             int tag = (int) v.getTag();
             selectedPasswordBean = getItem(tag);//获取当前项的实例
@@ -70,6 +69,7 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
             this.remove(selectedPasswordBean);
             selectedPasswordBean.delete();
             ToastUtils.show(getContext(), getContext().getString(R.string.delete_success));
+            selectedPasswordBean = null;
         });
         builder.create().show();
     }
