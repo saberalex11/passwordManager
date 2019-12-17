@@ -1,0 +1,141 @@
+<resources>
+    <string name="app_name">密码助手</string>
+    <!-- 登录 -->
+    <string name="password_name">请输入密码</string>
+    <string name="login">登录</string>
+    <!-- 设置密码 -->
+    <string name="set_password">请设置密码</string>
+    <string name="sure">确认</string>
+    <string name="first">请设置root密码</string>
+    <!-- 主页面 -->
+    <string name="query">查询</string>
+    <string name="add">新增</string>
+    <!-- 新增 -->
+    <string name="name">名称：</string>
+    <string name="account">账号：</string>
+    <string name="password">密码：</string>
+    <string name="generate">生成</string>
+    <string name="password_length">密码长度：</string>
+    <string name="upper">大写字母</string>
+    <string name="symbol">符号</string>
+
+    <!-- 查询 -->
+    <string name="delete">删除</string>
+
+    <!-- 提示 -->
+    <string name="input_password">请输入密码</string>
+    <string name="wrong_password">密码错误</string>
+    <string name="login_success">登录成功</string>
+    <string name="delete_success">删除成功</string>
+    <string name="set_password_success">设置密码成功</string>
+    <string name="reset_password">密码已经重置</string>
+    <string name="name_empty">名称不可为空</string>
+    <string name="account_empty">账号不可为空</string>
+    <string name="password_empty">密码不可为空</string>
+    <string name="repeat_name">名称重复，请更换</string>
+    <string name="save_success">保存成功</string>
+    <string name="password_length_empty">密码长度不可为空</string>
+    <string name="password_length_tips">密码长度为6至20位</string>
+    <string name="please_input_name">请输入名称</string>
+    <string name="condition_empty">查询条件为空</string>
+
+    <!-- 密码 -->
+    <string-array name="number">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
+    <string-array name="lower">
+        <item>a</item>
+        <item>b</item>
+        <item>c</item>
+        <item>d</item>
+        <item>e</item>
+        <item>f</item>
+        <item>g</item>
+        <item>h</item>
+        <item>i</item>
+        <item>j</item>
+        <item>k</item>
+        <item>l</item>
+        <item>m</item>
+        <item>n</item>
+        <item>o</item>
+        <item>p</item>
+        <item>q</item>
+        <item>r</item>
+        <item>s</item>
+        <item>t</item>
+        <item>u</item>
+        <item>v</item>
+        <item>w</item>
+        <item>x</item>
+        <item>y</item>
+        <item>z</item>
+    </string-array>
+
+    <string-array name="upper">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>W</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
+    </string-array>
+
+    <string-array name="symbol">
+        <item>&#33;</item>
+        <item>&#35;</item>
+        <item>&#36;</item>
+        <item>&#37;</item>
+        <item>&#38;</item>
+        <item>&#40;</item>
+        <item>&#41;</item>
+        <item>&#42;</item>
+        <item>&#43;</item>
+        <item>&#44;</item>
+        <item>&#45;</item>
+        <item>&#46;</item>
+        <item>&#47;</item>
+        <item>&#58;</item>
+        <item>&#59;</item>
+        <item>&#60;</item>
+        <item>&#61;</item>
+        <item>&#62;</item>
+        <item>&#94;</item>
+        <item>&#123;</item>
+        <item>&#124;</item>
+        <item>&#125;</item>
+        <item>&#126;</item>
+    </string-array>
+
+
+</resources>
