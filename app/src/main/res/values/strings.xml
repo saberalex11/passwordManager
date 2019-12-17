@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">密码助手</string>
     <!-- 登录 -->
-    <string name="password_name">请输入密码</string>
+    <string name="login_hint">请输入登录密码</string>
     <string name="login">登录</string>
     <!-- 设置密码 -->
-    <string name="set_password">请设置密码</string>
     <string name="sure">确认</string>
     <string name="first">请设置登录密码</string>
     <!-- 主页面 -->
