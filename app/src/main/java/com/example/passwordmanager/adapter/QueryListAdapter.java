@@ -34,16 +34,18 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         PasswordBean passwordBean = getItem(position);//获取当前项的实例
-        View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+        if(convertView == null){
+            convertView = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+        }
 
-        ((TextView) view.findViewById(R.id.nameTextView)).setText(getContext().getString(R.string.name) + passwordBean.getName());
-        ((TextView) view.findViewById(R.id.accountTextView)).setText(getContext().getString(R.string.account) + passwordBean.getAccount());
-        ((TextView) view.findViewById(R.id.passwordTextView)).setText(getContext().getString(R.string.password) + passwordBean.getPassword());
+        ((TextView) convertView.findViewById(R.id.nameTextView)).setText(getContext().getString(R.string.name) + passwordBean.getName());
+        ((TextView) convertView.findViewById(R.id.accountTextView)).setText(getContext().getString(R.string.account) + passwordBean.getAccount());
+        ((TextView) convertView.findViewById(R.id.passwordTextView)).setText(getContext().getString(R.string.password) + passwordBean.getPassword());
 
-        Button btn = (Button) view.findViewById(R.id.deleteButton);
+        Button btn = (Button) convertView.findViewById(R.id.deleteButton);
         btn.setTag(position);
         btn.setOnClickListener(this);
-        return view;
+        return convertView;
     }
 
     @Override

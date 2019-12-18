@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,7 +40,18 @@ public class QueryListActivity extends AppCompatActivity {
     }
 
     private void flushList(List<PasswordBean> data) {
-        QueryListAdapter adapter = new QueryListAdapter(this, R.layout.password_show_list, data);
-        ((ListView) findViewById(R.id.listView)).setAdapter(adapter);
+
+        ListView listView = ((ListView) findViewById(R.id.listView));
+        ListAdapter adapter = listView.getAdapter();
+        if(adapter == null){
+            adapter = new QueryListAdapter(this, R.layout.password_show_list, data);
+            listView.setAdapter(adapter);
+        }else{
+            QueryListAdapter queryListAdapter = (QueryListAdapter)adapter;
+            queryListAdapter.clear();
+            queryListAdapter.addAll(data);
+            queryListAdapter.notifyDataSetChanged();
+        }
+
     }
 }
