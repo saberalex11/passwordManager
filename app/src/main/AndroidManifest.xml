@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.QueryListActivity" android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".activity.AddActivity" />
+        <activity android:name=".activity.EditActivity" />
         <activity android:name=".activity.SetPasswordActivity" />
         <activity android:name=".activity.MainFrameActivity" />
         <activity android:name=".MainActivity">

@@ -2,6 +2,7 @@ package com.example.passwordmanager.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.appcompat.app.AlertDialog;
 
 
 import com.example.passwordmanager.R;
+import com.example.passwordmanager.activity.AddActivity;
+import com.example.passwordmanager.activity.EditActivity;
 import com.example.passwordmanager.entity.PasswordBean;
 import com.example.passwordmanager.utils.ToastUtils;
 
@@ -24,11 +27,14 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
     // 子项布局的id
     private int resourceId;
 
+    private Context context;
+
     private PasswordBean selectedPasswordBean;
 
     public QueryListAdapter(@NonNull Context context, int resource, @NonNull List<PasswordBean> objects) {
         super(context, resource, objects);
-        resourceId = resource;
+        this.resourceId = resource;
+        this.context = context;
     }
 
     @Override
@@ -45,6 +51,16 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
         Button btn = (Button) convertView.findViewById(R.id.deleteButton);
         btn.setTag(position);
         btn.setOnClickListener(this);
+
+        Button editBtn = (Button) convertView.findViewById(R.id.editButton);
+        editBtn.setOnClickListener((v)->{
+            Intent intent = new Intent(context, EditActivity.class);
+            intent.putExtra("name",passwordBean.getName());
+            intent.putExtra("account",passwordBean.getAccount());
+            intent.putExtra("password",passwordBean.getPassword());
+            context.startActivity(intent);
+        });
+
         return convertView;
     }
 
