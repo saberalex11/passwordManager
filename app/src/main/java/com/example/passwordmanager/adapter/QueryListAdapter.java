@@ -1,5 +1,6 @@
 package com.example.passwordmanager.adapter;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,9 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
-
 import com.example.passwordmanager.R;
-import com.example.passwordmanager.activity.AddActivity;
 import com.example.passwordmanager.activity.EditActivity;
 import com.example.passwordmanager.entity.PasswordBean;
 import com.example.passwordmanager.utils.ToastUtils;
@@ -27,14 +26,11 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
     // 子项布局的id
     private int resourceId;
 
-    private Context context;
-
     private PasswordBean selectedPasswordBean;
 
     public QueryListAdapter(@NonNull Context context, int resource, @NonNull List<PasswordBean> objects) {
         super(context, resource, objects);
         this.resourceId = resource;
-        this.context = context;
     }
 
     @Override
@@ -54,11 +50,25 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
 
         Button editBtn = (Button) convertView.findViewById(R.id.editButton);
         editBtn.setOnClickListener((v)->{
-            Intent intent = new Intent(context, EditActivity.class);
+            Intent intent = new Intent(getContext(), EditActivity.class);
             intent.putExtra("name",passwordBean.getName());
             intent.putExtra("account",passwordBean.getAccount());
             intent.putExtra("password",passwordBean.getPassword());
-            context.startActivity(intent);
+            getContext().startActivity(intent);
+        });
+
+        Button copyBtn = (Button) convertView.findViewById(R.id.copyButton);
+        copyBtn.setOnClickListener((v)->{
+            ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            cm.setText(passwordBean.getPassword());
+            ToastUtils.show(getContext(),getContext().getString(R.string.copy_success));
+        });
+
+        Button copyAccountBtn = (Button) convertView.findViewById(R.id.copyAccountButton);
+        copyAccountBtn.setOnClickListener((v)->{
+            ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            cm.setText(passwordBean.getAccount());
+            ToastUtils.show(getContext(),getContext().getString(R.string.copy_success));
         });
 
         return convertView;
