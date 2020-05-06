@@ -28,29 +28,35 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
     }
 
-    public void add(View view) {
-        String name = ((EditText)findViewById(R.id.nameText)).getText().toString();
-        String account = ((EditText)findViewById(R.id.accountText)).getText().toString();
-        String password = ((EditText)findViewById(R.id.passwordText)).getText().toString();
+    public void saveAndExit(View view) {
+        if (this.add(view)) {
+            super.onBackPressed();
+        }
+    }
+
+    public boolean add(View view) {
+        String name = ((EditText) findViewById(R.id.nameText)).getText().toString();
+        String account = ((EditText) findViewById(R.id.accountText)).getText().toString();
+        String password = ((EditText) findViewById(R.id.passwordText)).getText().toString();
 
         if ("".equals(name)) {
             ToastUtils.show(this, this.getString(R.string.name_empty));
-            return;
+            return false;
         } else {
             //校验唯一性
             int result = LitePal.where("name = ?", name).count(PasswordBean.class);
             if (result != 0) {
                 ToastUtils.show(this, this.getString(R.string.repeat_name));
-                return;
+                return false;
             }
         }
         if ("".equals(account)) {
             ToastUtils.show(this, this.getString(R.string.account_empty));
-            return;
+            return false;
         }
         if ("".equals(password)) {
             ToastUtils.show(this, this.getString(R.string.password_empty));
-            return;
+            return false;
         }
         PasswordBean passwordBean = new PasswordBean();
         passwordBean.setName(name);
@@ -59,9 +65,7 @@ public class AddActivity extends AppCompatActivity {
         passwordBean.save();
         this.clearText();
         ToastUtils.show(this, this.getString(R.string.save_success));
-
-
-
+        return true;
     }
 
     public void generatePassword(View view) {
@@ -86,10 +90,10 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    private void clearText(){
-        EditText name = (EditText)findViewById(R.id.nameText);
-        EditText account = (EditText)findViewById(R.id.accountText);
-        EditText password = (EditText)findViewById(R.id.passwordText);
+    private void clearText() {
+        EditText name = (EditText) findViewById(R.id.nameText);
+        EditText account = (EditText) findViewById(R.id.accountText);
+        EditText password = (EditText) findViewById(R.id.passwordText);
         EditText passwordLengthText = findViewById(R.id.passwordLengthText);
         name.setText(null);
         account.setText(null);
@@ -108,7 +112,7 @@ public class AddActivity extends AppCompatActivity {
         do {
             generateList.clear();
             for (int i = 0; i < length; i++) {
-                generateList.add(typeList.get((int)(Math.random() * typeList.size())));
+                generateList.add(typeList.get((int) (Math.random() * typeList.size())));
             }
         } while (!this.isAllInclude(generateList, typeList));
 
@@ -121,20 +125,20 @@ public class AddActivity extends AppCompatActivity {
         return passwordBuilder.toString();
     }
 
-    private String getPasswordString(int type){
+    private String getPasswordString(int type) {
         String[] numberArray = this.getResources().getStringArray(R.array.number);
         String[] lowerArray = this.getResources().getStringArray(R.array.lower);
         String[] upperArray = this.getResources().getStringArray(R.array.upper);
         String[] symbolArray = this.getResources().getStringArray(R.array.symbol);
         String c = null;
-        if(type == PasswordType.LOWER.getType()){
-            c = lowerArray[(int)(Math.random() * lowerArray.length)];
-        }else if(type == PasswordType.UPPER.getType()){
-            c = upperArray[(int)(Math.random() * upperArray.length)];
-        }else if(type == PasswordType.NUMBER.getType()){
-            c = numberArray[(int)(Math.random() * numberArray.length)];
-        }else if(type == PasswordType.SYMBOL.getType()){
-            c = symbolArray[(int)(Math.random() * symbolArray.length)];
+        if (type == PasswordType.LOWER.getType()) {
+            c = lowerArray[(int) (Math.random() * lowerArray.length)];
+        } else if (type == PasswordType.UPPER.getType()) {
+            c = upperArray[(int) (Math.random() * upperArray.length)];
+        } else if (type == PasswordType.NUMBER.getType()) {
+            c = numberArray[(int) (Math.random() * numberArray.length)];
+        } else if (type == PasswordType.SYMBOL.getType()) {
+            c = symbolArray[(int) (Math.random() * symbolArray.length)];
         }
         return c;
     }

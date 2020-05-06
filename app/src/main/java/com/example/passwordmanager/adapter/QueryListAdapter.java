@@ -36,39 +36,39 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         PasswordBean passwordBean = getItem(position);//获取当前项的实例
-        if(convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
         }
 
-        ((TextView) convertView.findViewById(R.id.nameTextView)).setText(getContext().getString(R.string.name) + passwordBean.getName());
-        ((TextView) convertView.findViewById(R.id.accountTextView)).setText(getContext().getString(R.string.account) + passwordBean.getAccount());
-        ((TextView) convertView.findViewById(R.id.passwordTextView)).setText(getContext().getString(R.string.password) + passwordBean.getPassword());
+        ((TextView) convertView.findViewById(R.id.nameTextView)).setText(passwordBean.getName());
+        ((TextView) convertView.findViewById(R.id.accountTextView)).setText(passwordBean.getAccount());
+        ((TextView) convertView.findViewById(R.id.passwordTextView)).setText(passwordBean.getPassword());
 
         Button btn = (Button) convertView.findViewById(R.id.deleteButton);
         btn.setTag(position);
         btn.setOnClickListener(this);
 
         Button editBtn = (Button) convertView.findViewById(R.id.editButton);
-        editBtn.setOnClickListener((v)->{
+        editBtn.setOnClickListener((v) -> {
             Intent intent = new Intent(getContext(), EditActivity.class);
-            intent.putExtra("name",passwordBean.getName());
-            intent.putExtra("account",passwordBean.getAccount());
-            intent.putExtra("password",passwordBean.getPassword());
+            intent.putExtra("name", passwordBean.getName());
+            intent.putExtra("account", passwordBean.getAccount());
+            intent.putExtra("password", passwordBean.getPassword());
             getContext().startActivity(intent);
         });
 
         Button copyBtn = (Button) convertView.findViewById(R.id.copyButton);
-        copyBtn.setOnClickListener((v)->{
+        copyBtn.setOnClickListener((v) -> {
             ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             cm.setText(passwordBean.getPassword());
-            ToastUtils.show(getContext(),getContext().getString(R.string.copy_success));
+            ToastUtils.show(getContext(), getContext().getString(R.string.copy_success));
         });
 
         Button copyAccountBtn = (Button) convertView.findViewById(R.id.copyAccountButton);
-        copyAccountBtn.setOnClickListener((v)->{
+        copyAccountBtn.setOnClickListener((v) -> {
             ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             cm.setText(passwordBean.getAccount());
-            ToastUtils.show(getContext(),getContext().getString(R.string.copy_success));
+            ToastUtils.show(getContext(), getContext().getString(R.string.copy_success));
         });
 
         return convertView;
@@ -87,8 +87,8 @@ public class QueryListAdapter extends ArrayAdapter<PasswordBean> implements View
 
     private void confirm() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(getContext().getString(R.string.delete_confirm));
-        builder.setMessage(getContext().getString(R.string.delete_confirm_message));
+        builder.setTitle(getContext().getString(R.string.delete_confirm) + " " + selectedPasswordBean.getName());
+        builder.setMessage(getContext().getString(R.string.delete_confirm_message) + ":" + selectedPasswordBean.getName());
 
         builder.setNegativeButton(getContext().getText(R.string.no), (DialogInterface di, int pos) -> {
         });

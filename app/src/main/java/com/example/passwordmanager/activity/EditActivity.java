@@ -32,6 +32,7 @@ public class EditActivity extends AppCompatActivity {
             ((EditText) findViewById(R.id.nameText)).setText(intent.getStringExtra("name"));
             ((EditText) findViewById(R.id.accountText)).setText(intent.getStringExtra("account"));
             ((EditText) findViewById(R.id.passwordText)).setText(intent.getStringExtra("password"));
+            ((EditText) findViewById(R.id.passwordLengthText)).setText(String.valueOf(intent.getStringExtra("password").length()));
         }
     }
 
@@ -67,8 +68,7 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void cancel(View view){
-        Intent intent = new Intent(this, QueryListActivity.class);
-        startActivity(intent);
+        super.onBackPressed();
     }
 
     public void generatePassword(View view) {
